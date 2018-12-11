@@ -3,16 +3,17 @@ import telepot
 import sys
 from wow_token_price_fetcher import get_token_price
 from loguru import logger
+from dotenv import load_dotenv
+import os
+load_dotenv(verbose=True)
+SECRET = os.getenv('SECRET')
+BOTKEY = os.getenv('BOTKEY')
 
-
-
-bot = telepot.Bot('key')
-
-bot.setWebhook("https://py-wowtokenprice.herokuapp.com/", max_connections=1)
+bot = telepot.Bot(BOTKEY)
+bot.setWebhook("https://deliciouswarmastronomy--lairdstreak93.repl.co/", max_connections=1)
 
 app = Flask(__name__)
 
-@logger.catch
 @app.route('/', methods=["POST"])
 def telegram_webhook():
     try:
@@ -32,4 +33,4 @@ def telegram_webhook():
 
 if __name__ == '__main__':
     logger.start("loguru.log")
-    app.run(debug=True, use_reloader=True)
+    app.run(host='0.0.0.0', port='3000')
