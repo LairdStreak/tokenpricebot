@@ -1,8 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import telepot
 import sys
 from wow_token_price_fetcher import get_token_price
-from loguru import logger
 from dotenv import load_dotenv
 from werkzeug import exceptions
 import os
@@ -22,6 +21,10 @@ def handle_bad_request(e):
 @app.errorhandler(exceptions.InternalServerError)
 def handle_server_error(e):
     return 'internal server error ...', 500    
+
+@app.route('/', methods=["GET"])
+def index(name=None):
+    return render_template('index.htm', name=name)    
 
 @app.route('/', methods=["POST"])
 def telegram_webhook():
