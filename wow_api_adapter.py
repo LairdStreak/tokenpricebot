@@ -11,4 +11,4 @@ class wow_api_adapter:
         return self.DATAAPI.get_auctions('us', 'khazgoroth', locale='enUS')
 
     def get_guild_data(self):
-        return self.DATAAPI.get_guild_profile('us', 'dathremar', guild_name='whitehand') # /dathremar/WhiteHand/
+        return self.DATAAPI.get_guild_profile('us', 'dathremar', guild_name='whitehand', fields='members') # /dathremar/WhiteHand/
