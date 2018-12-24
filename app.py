@@ -20,8 +20,13 @@ app.register_blueprint(botapi, url_prefix='/api')
 
 
 @app.route('/', methods=["GET"])
+@app.route('/index', methods=["GET"])
 def index():
     return render_template('index.html', name='Joe Blogs')
+
+@app.route('/tables')
+def tables():
+    return render_template('tables.html', name='Joe Blogs')    
 
 
 @app.errorhandler(404)
