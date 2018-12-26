@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from wow_token_price_fetcher import get_token_price
 from wow_api_adapter import wow_api_adapter
 import pprint
+import pandas as pd
 
 def main():
     load_dotenv(verbose=True)
@@ -14,8 +15,11 @@ def main():
     # response = adapter.get_recent_auctions()
     # auc_uri = response['files'][0]['url']
     guildresponse = adapter.get_guild_data()
-    pprint.pprint(guildresponse)
-    print(guildresponse)
+    for index, row in guildresponse.iterrows():
+        gender = adapter.get_gender_description(row['character']['gender'])
+        print(f"{row['character']['name']} {gender} ")
+    #pprint.pprint(guildresponse)
+    #print(guildresponse)
 
 if __name__ == '__main__':
     main()    
